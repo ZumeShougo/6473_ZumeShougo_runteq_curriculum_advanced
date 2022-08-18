@@ -26,3 +26,7 @@ set :output, "#{Rails.root}/log/cron.log"# cronのログの吐き出し場所
 every :hour do#1時間ごとに（:hour）実行する先程設定したrakeタスクを記入
   rake 'article_state:change_to_be_published'
 end
+
+every 1.day, at: '9:00 am' do
+  rake 'article_summary:mail_article_summary'
+end
